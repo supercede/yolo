@@ -1,0 +1,25 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "allowJs": true,
+    "outDir": "./dist",
+
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+
+    "moduleResolution": "node",
+
+    "baseUrl": ".",
+    "paths": {
+      "@controllers/*": ["src/api/controllers/*"],
+      "@app/*": ["src/*"]
+    },
+
+    "typeRoots": ["node_modules/@types"]
+  }
+}
