@@ -53,8 +53,8 @@ const typeDefs = gql`
     getEvents: [Event]!
   }
 
-  type Mutation {
-    hello(input: String!): String!
+  type Subscription {
+    eventUpdate: Event
   }
 `;
 

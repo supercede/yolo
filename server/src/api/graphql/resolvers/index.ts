@@ -1,16 +1,27 @@
+import { pubsub } from '@services/redis';
 import type { Redis } from 'ioredis';
+import { Constants } from '@app/types';
+
 type Context = {
   redisClient: Redis;
 };
+
 const resolvers = {
   Query: {
-    getEvents: async (ctx: Context) => {
+    getEvents: async (_: any, __: any, ctx: Context) => {
       const queries = await ctx.redisClient.hgetall('event');
-      const d = Object.keys(queries).map((key) => JSON.parse(queries[key]));
-      return d;
+      const e = Object.keys(queries).map((key) => JSON.parse(queries[key]));
+      return e;
     },
   },
-  Mutation: {},
+  Subscription: {
+    eventUpdate: {
+      subscribe: () => {
+        return pubsub.asyncIterator(Constants.UPDATE_EVENT);
+      },
+    },
+  },
+  // Mutation: {},
 };
 
 export default resolvers;

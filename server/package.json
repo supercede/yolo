@@ -4,10 +4,10 @@
   "description": "",
   "scripts": {
     "build": "npx tsc",
-    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/src/index.js | pino-pretty\"",
+    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/index.js | pino-pretty\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "start": "NODE_ENV=production node dist/src/index.js  | pino-pretty"
+    "start": "NODE_ENV=production node dist/index.js  | pino-pretty"
   },
   "keywords": [],
   "author": "",
@@ -51,8 +51,8 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@app": "dist/src",
-    "@controllers": "dist/src/api/controllers",
-    "@services": "dist/src/api/services"
+    "@app": "dist/",
+    "@controllers": "dist/api/controllers",
+    "@services": "dist/api/services"
   }
 }

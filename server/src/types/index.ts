@@ -40,6 +40,17 @@ type Payload = {
 };
 
 export type Event = {
-  type: string;
+  type: eventUpdate;
   payload: Payload;
 };
+
+enum eventUpdate {
+  DATA_EVENT = 'event-data',
+  UPDATE_EVENT = 'event-update',
+}
+
+export enum Constants {
+  UPDATE_EVENT = 'EVENT_UPDATED',
+}
+
+// export const UPDATE_EVENT = 'EVENT_UPDATED';

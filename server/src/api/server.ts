@@ -20,8 +20,7 @@ import resolvers from './graphql/resolvers';
 import { config } from '../config';
 import { logger } from './utils/logger';
 import { Disposable } from 'graphql-ws';
-import { ws } from '@app/client/ws';
-import { Event } from 'types';
+import { initExternalWS } from '@app/api/ws/external';
 import { redisClient } from '@services/redis';
 
 dotenv.config();
@@ -30,8 +29,6 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
-
-const isDevelopment = config.env === 'development';
 
 export const apolloConfig = (
   server: http.Server,
@@ -62,12 +59,7 @@ const server = async () => {
 
   app.use(express.json());
   app.use(morgan('dev'));
-  app.use(
-    helmet({
-      crossOriginEmbedderPolicy: !isDevelopment,
-      contentSecurityPolicy: !isDevelopment,
-    })
-  );
+  app.use(helmet());
 
   const port = config.server.port;
 
@@ -75,23 +67,7 @@ const server = async () => {
     res.send('Welcome to the beginning of everything');
   });
 
-  ws.on('open', function open() {
-    ws.send('{"type":"recovery"}');
-  });
-
-  ws.on('message', function message(data) {
-    const c = data.toString();
-
-    if (c.includes('event')) {
-      const e: Event = JSON.parse(c);
-      if (e.type === 'event-data') {
-        // redisClient.set(e.payload.id, c);
-        redisClient.hset('event', e.payload.id, c);
-      }
-    } else {
-      logger.info(`infoeceived Data ${c}`);
-    }
-  });
+  initExternalWS();
 
   const httpServer = http.createServer(app);
 
@@ -105,7 +81,21 @@ const server = async () => {
 
   // Hand in the schema we just created and have the
   // WebSocketServer start listening.
-  const serverCleanup = useServer({ schema }, wsServer);
+  const serverCleanup = useServer(
+    {
+      schema,
+      onConnect: async () => {
+        logger.info('Connected to websocket server');
+      },
+      onDisconnect(ctx, code, reason) {
+        logger.info('Disconnected from ws server! %s, %s', code, reason);
+      },
+      onError(ctx, msg, errors) {
+        logger.error('Error! %s %s', msg, errors);
+      },
+    },
+    wsServer
+  );
 
   const server = new ApolloServer(apolloConfig(httpServer, serverCleanup));
 
