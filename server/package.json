@@ -37,6 +37,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
+    "graphql-redis-subscriptions": "^2.5.0",
     "graphql-ws": "^5.10.1",
     "helmet": "^5.1.1",
     "module-alias": "^2.2.2",
