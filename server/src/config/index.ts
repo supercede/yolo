@@ -16,6 +16,16 @@ export interface Config {
   server: {
     port: number;
   };
+
+  auth: {
+    username: string;
+    password: string;
+  };
+
+  redis: {
+    host: string;
+    port: number;
+  };
 }
 
 export const getEnvironmentValue = (
