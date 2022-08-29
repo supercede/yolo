@@ -2,10 +2,7 @@ import 'module-alias/register';
 
 import http from 'http';
 import { ApolloServer } from 'apollo-server-express';
-import {
-  ApolloServerPluginDrainHttpServer,
-  ApolloServerPluginLandingPageLocalDefault,
-} from 'apollo-server-core';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -25,6 +22,8 @@ import { redisClient } from '@services/redis';
 
 dotenv.config();
 
+const isDevelopment = config.env === 'development';
+
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
@@ -35,7 +34,7 @@ export const apolloConfig = (
   serverCleanup: Disposable
 ) => ({
   schema,
-  csrfPrevention: config.env === 'production',
+  // csrfPrevention: config.env === 'production',
   context: () => ({ redisClient }),
   plugins: [
     ApolloServerPluginDrainHttpServer({ httpServer: server }),
@@ -48,8 +47,9 @@ export const apolloConfig = (
         };
       },
     },
-    ApolloServerPluginLandingPageLocalDefault({ embed: true }),
   ],
+  introspection: true,
+  playground: true,
 });
 
 const server = async () => {
@@ -59,7 +59,12 @@ const server = async () => {
 
   app.use(express.json());
   app.use(morgan('dev'));
-  app.use(helmet());
+  app.use(
+    helmet({
+      crossOriginEmbedderPolicy: !isDevelopment,
+      contentSecurityPolicy: !isDevelopment,
+    })
+  );
 
   const port = config.server.port;
 

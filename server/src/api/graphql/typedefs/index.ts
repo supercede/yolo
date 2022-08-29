@@ -25,7 +25,7 @@ const typeDefs = gql`
   type Selection {
     id: String
     name: String
-    odds: Int
+    odds: Float
   }
 
   type Market {
