@@ -10,7 +10,7 @@ export const ws = new WebSocket(
 
 export const initExternalWS = () => {
   ws.on('open', function open() {
-    console.log('OPEN');
+    logger.debug('OPEN');
     ws.send('{"type":"recovery"}');
   });
 

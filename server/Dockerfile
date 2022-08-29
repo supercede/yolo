@@ -32,6 +32,7 @@ RUN npm run build
 FROM build as prod
 COPY --from=build /app/dist /app/dist
 
+RUN ls
 EXPOSE 5000
 
-CMD ["npm", "./dist/api/index.js"]
+CMD ["npm", "start"]

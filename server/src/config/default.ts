@@ -18,6 +18,7 @@ const config: Config = {
   redis: {
     host: getEnvironmentValue('REDIS_HOST', 'localhost'),
     port: Number(getEnvironmentValue('REDIS_PORT', '6379')),
+    password: getEnvironmentValue('REDIS_PASSWORD', ''),
   },
 };
 
