@@ -3,6 +3,12 @@ import React from "react";
 import { Competitor, EventContainerProps, Selection } from "src/types";
 
 export function EventContainer(props: EventContainerProps) {
+  const startDate = new Date(props.event.startTime).toLocaleDateString("en-GB");
+  const startTime = new Date(props.event.startTime).toLocaleTimeString(
+    "en-GB",
+    { hour12: false }
+  );
+
   return (
     <li className="flex rounded-sm bg-blue">
       <div className="flex flex-col w-2/3 p-3">
@@ -11,7 +17,11 @@ export function EventContainer(props: EventContainerProps) {
             <EventCompetitor competitor={competitor} key={competitor.id} />
           ))}
         </ul>
-        <p className="text-xs sm:text-sm text-grey">Nov 22, 2022</p>
+        {/* <p className="text-xs sm:text-sm text-grey">Nov 22, 2022</p> */}
+        <p className="text-xs sm:text-sm text-grey">
+          {startDate.substring(0, startDate.length - 5)}{" "}
+          {startTime.substring(0, startTime.length - 3)}
+        </p>
       </div>
       <ul className="flex w-1/2 gap-2 p-2">
         {props.event?.markets[0] ? (

@@ -19,3 +19,8 @@
 ## Setup
 
 Please check the client and server folders to set up each individual service
+
+### Deployment:
+
+- [Next.js](https://yodds-client.vercel.app/)
+- [API](https://yodds-server.herokuapp.com/)
