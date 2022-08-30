@@ -24,7 +24,7 @@ export const pubsub = new RedisPubSub({
   publisher: new Redis(options),
   subscriber: new Redis(options),
   connectionListener: (err) => {
-    err ? console.log(err) : console.log('connected');
+    err ? logger.error(err) : logger.debug('connected');
   },
 });
 

@@ -19,11 +19,12 @@ export const initExternalWS = () => {
 
     if (c.includes('event')) {
       const e: Event = JSON.parse(c);
+      logger.debug('new message', e.type);
       if (e.type === 'event-data') {
         redisClient.hset('event', e.payload.id, c);
       } else if (e.type === 'event-update') {
         logger.info('New Update');
-        redisClient.hset('event', e.payload.id, c);
+        // redisClient.hset('event', e.payload.id, c);
         pubsub.publish(Constants.UPDATE_EVENT, { eventUpdate: e });
       }
     } else {
