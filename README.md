@@ -24,3 +24,4 @@ Please check the client and server folders to set up each individual service
 
 - [Next.js](https://yodds-client.vercel.app/)
 - [API](https://yodds-server.herokuapp.com/)
+- [API Playground](https://studio.apollographql.com/public/yodds/schema/reference?variant=current)

@@ -34,7 +34,6 @@ export const apolloConfig = (
   serverCleanup: Disposable
 ) => ({
   schema,
-  // csrfPrevention: config.env === 'production',
   context: () => ({ redisClient }),
   plugins: [
     ApolloServerPluginDrainHttpServer({ httpServer: server }),
@@ -69,7 +68,9 @@ const server = async () => {
   const port = config.server.port;
 
   app.get('/', (_, res: Response) => {
-    res.send('Welcome to the beginning of everything');
+    res.send(
+      'Welcome traveller. Please visit https://studio.apollographql.com/public/yodds/schema/reference?variant=current to query this server'
+    );
   });
 
   initExternalWS();

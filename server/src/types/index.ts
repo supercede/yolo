@@ -52,5 +52,3 @@ enum eventUpdate {
 export enum Constants {
   UPDATE_EVENT = 'EVENT_UPDATED',
 }
-
-// export const UPDATE_EVENT = 'EVENT_UPDATED';

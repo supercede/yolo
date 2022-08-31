@@ -30,6 +30,6 @@ This application is ready to be executed in a Dockerized environment for local d
 - To start the dockerized environment (api + database) run `docker-compose -f docker-compose.dev.yml up -d`
 - Finally, to stop everything, simple run the following command `docker-compose down`.
 
-## Documentation/Graph
+## Documentation/Playground
 
 [Apollo Studio](https://studio.apollographql.com/public/yodds/schema/reference?variant=current)
