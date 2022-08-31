@@ -10,7 +10,7 @@ export const initExternalWS = () => {
   );
 
   ws.on('open', function open() {
-    logger.debug('OPEN');
+    logger.info('External websocket server OPEN');
     ws.send('{"type":"recovery"}');
   });
 
@@ -24,6 +24,7 @@ export const initExternalWS = () => {
         redisClient.hset('event', e.payload.id, c);
       } else if (e.type === 'event-update') {
         logger.info('New Update');
+        redisClient.hset('event', e.payload.id, c);
         pubsub.publish(Constants.UPDATE_EVENT, { eventUpdate: e });
       }
     } else {

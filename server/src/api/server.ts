@@ -68,9 +68,10 @@ const server = async () => {
   const port = config.server.port;
 
   app.get('/', (_, res: Response) => {
-    res.send(
-      'Welcome traveller. Please visit https://studio.apollographql.com/public/yodds/schema/reference?variant=current to query this server'
-    );
+    res.send({
+      message:
+        'Welcome traveller. Please visit https://studio.apollographql.com/public/yodds/schema/reference?variant=current to query this server',
+    });
   });
 
   initExternalWS();
