@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Return 'No Market Available' when no market is available 1`] = `
+<ul
+  class="flex w-1/2 gap-2 p-2"
+>
+  <div
+    class="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue"
+  >
+    <p
+      class="text-sm text-grey"
+      data-testid="no-market"
+    >
+      No market available
+    </p>
+  </div>
+</ul>
+`;
+
+exports[`Return Market Odds 1`] = `
+<ul
+  class="flex w-1/2 gap-2 p-2"
+>
+  <li
+    class="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue"
+    data-testid="market-odds-49f594fc-85be-444b-b357-e394964041fd"
+  >
+    8.70
+  </li>
+  <li
+    class="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue"
+    data-testid="market-odds-f88a5308-fcdb-4274-8d53-b8fe687e8144"
+  >
+    9.18
+  </li>
+  <li
+    class="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue"
+    data-testid="market-odds-14a4f223-b1e4-458b-a26b-c351a651daca"
+  >
+    6.71
+  </li>
+</ul>
+`;

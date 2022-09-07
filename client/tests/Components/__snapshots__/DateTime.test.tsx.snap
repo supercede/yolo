@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test DateTime component 1`] = `
+<p
+  class="text-xs sm:text-sm text-grey"
+>
+  <span
+    data-test="true"
+    data-testid="event-start-date"
+  >
+    07/09
+     
+  </span>
+  <span
+    data-test="true"
+    data-testid="event-start-time"
+  >
+    03:50
+  </span>
+</p>
+`;

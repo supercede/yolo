@@ -1,11 +1,9 @@
 export type Event = {
-  __typename: string;
   type: string;
   payload: Payload;
 };
 
 export type Payload = {
-  __typename: string;
   id: string;
   competitors: Competitor[];
   markets: Market[];
@@ -14,21 +12,18 @@ export type Payload = {
 };
 
 export type Competitor = {
-  __typename: string;
   id: string;
   name: string;
   score: number;
 };
 
 export type Market = {
-  __typename: string;
   id: string;
   name: string;
   selections: Selection[];
 };
 
 export type Selection = {
-  __typename: string;
   id: string;
   name: string;
   odds: number | null;
@@ -45,6 +40,10 @@ export type EventTeamProps = {
   };
 };
 
-export type EventOddsProps = {
-  selection: { odds: number | null };
+export type EventMarketProps = {
+  markets?: Market[];
+};
+
+export type DateTimeProps = {
+  startTime: Date;
 };

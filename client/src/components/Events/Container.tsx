@@ -1,14 +1,10 @@
 import { EventCompetitor } from "./Competitor";
 import React from "react";
 import { Competitor, EventContainerProps, Selection } from "src/types";
+import { EventMarket } from "./Market";
+import { EventDateTime } from "./DateTime";
 
 export function EventContainer(props: EventContainerProps) {
-  const startDate = new Date(props.event.startTime).toLocaleDateString("en-GB");
-  const startTime = new Date(props.event.startTime).toLocaleTimeString(
-    "en-GB",
-    { hour12: false }
-  );
-
   return (
     <li className="flex rounded-sm bg-blue">
       <div className="flex flex-col w-2/3 p-3">
@@ -17,28 +13,9 @@ export function EventContainer(props: EventContainerProps) {
             <EventCompetitor competitor={competitor} key={competitor.id} />
           ))}
         </ul>
-        {/* <p className="text-xs sm:text-sm text-grey">Nov 22, 2022</p> */}
-        <p className="text-xs sm:text-sm text-grey">
-          {startDate.substring(0, startDate.length - 5)}{" "}
-          {startTime.substring(0, startTime.length - 3)}
-        </p>
+        <EventDateTime startTime={props.event.startTime} />
       </div>
-      <ul className="flex w-1/2 gap-2 p-2">
-        {props.event?.markets[0] ? (
-          props.event.markets[0]?.selections?.map((selection: Selection) => (
-            <li
-              key={selection.id}
-              className="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue"
-            >
-              {selection.odds ? Number(selection.odds)?.toFixed(2) : "-"}
-            </li>
-          ))
-        ) : (
-          <div className="flex items-center justify-center w-full h-full text-white rounded bg-bg-blue">
-            <p className="text-sm text-grey">No market available</p>
-          </div>
-        )}
-      </ul>
+      <EventMarket markets={props.event?.markets} />
     </li>
   );
 }
