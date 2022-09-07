@@ -4,10 +4,11 @@
   "description": "",
   "scripts": {
     "build": "npx tsc",
-    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/index.js | pino-pretty\"",
+    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/src/index.js | pino-pretty\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "start": "node dist/index.js  | pino-pretty"
+    "start": "node dist/src/index.js  | pino-pretty",
+    "test": "NODE_ENV=test jest tests/*.spec.[jt]s --maxWorkers=1 --forceExit ./tests"
   },
   "keywords": [],
   "author": "",
@@ -15,17 +16,26 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/cors": "^2.8.12",
+    "@types/ioredis-mock": "^5.6.0",
+    "@types/jest": "^29.0.0",
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.6.4",
     "@types/ramda": "^0.28.15",
+    "@types/request-promise": "^4.1.48",
     "@types/throng": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.8.0",
+    "eslint-plugin-jest": "^26.9.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "ioredis-mock": "^8.2.2",
+    "jest": "^28.1.3",
+    "jest-module-name-mapper": "^0.1.5",
+    "jest-websocket-mock": "^2.4.0",
     "nodemon": "^2.0.19",
+    "request-promise": "^4.2.6",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.6.4"
   },
   "dependencies": {
@@ -52,8 +62,7 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@app": "dist/",
-    "@controllers": "dist/api/controllers",
-    "@services": "dist/api/services"
+    "@app": "dist/src",
+    "@services": "dist/src/api/services"
   }
 }

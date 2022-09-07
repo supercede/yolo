@@ -8,6 +8,7 @@
     "strict": true,
     "allowJs": true,
     "outDir": "./dist",
+    "esModuleInterop": true,
 
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
@@ -19,7 +20,10 @@
       "@services/*": ["src/api/services/*"],
       "@app/*": ["src/*"]
     },
+    "types": ["jest"],
+
 
     "typeRoots": ["node_modules/@types"]
-  }
+  },
+  "include": ["src", "tests"],
 }

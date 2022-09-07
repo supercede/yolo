@@ -12,10 +12,10 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { WebSocketServer } from 'ws';
 import { useServer } from 'graphql-ws/lib/use/ws';
 
-import typeDefs from './graphql/typedefs';
-import resolvers from './graphql/resolvers';
-import { config } from '../config';
-import { logger } from './utils/logger';
+import typeDefs from '@app/api/graphql/typedefs';
+import resolvers from '@app/api/graphql/resolvers';
+import { config } from '@app/config';
+import { logger } from '@app/api/utils/logger';
 import { Disposable } from 'graphql-ws';
 import { initExternalWS } from '@app/api/ws/external';
 import { redisClient } from '@services/redis';
@@ -110,10 +110,7 @@ const server = async () => {
 
   server.applyMiddleware({ app });
 
-  await new Promise<void>((resolve) => httpServer.listen({ port }, resolve));
-  logger.info(
-    `⚡️[server]: Server is running at http://localhost:${port}${server.graphqlPath}`
-  );
+  return httpServer;
 };
 
 export default server;

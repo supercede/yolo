@@ -23,6 +23,8 @@ Ensure you have the following installed on your local machine:
 
 - Run `npm run dev` to start the server in development mode or `npm run start` to start the server in production mode
 
+- Run `npm test` to run tests
+
 ### Docker
 
 This application is ready to be executed in a Dockerized environment for local development purposes.
