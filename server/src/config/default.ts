@@ -1,7 +1,7 @@
 import type { Config } from '.';
 import { getEnvironmentValue } from '.';
 
-const config: Config = {
+export const config: Config = {
   appName: 'yodds',
 
   env: getEnvironmentValue('NODE_ENV', 'development') as Config['env'],
@@ -21,5 +21,3 @@ const config: Config = {
     password: getEnvironmentValue('REDIS_PASSWORD', ''),
   },
 };
-
-export = config;

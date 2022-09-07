@@ -1,7 +1,7 @@
 import { config } from '@app/config';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import Redis, { RedisOptions } from 'ioredis';
-import { logger } from '../utils/logger';
+import { logger } from '@app/api/utils/logger';
 
 let options: RedisOptions = {
   host: config.redis.host,

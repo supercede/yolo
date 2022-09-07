@@ -1,6 +1,6 @@
 import pino from 'pino';
 import * as R from 'ramda';
-import { config } from '../../config';
+import { config } from '@app/config';
 
 const dest = process.stdout;
 

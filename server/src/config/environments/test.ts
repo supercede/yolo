@@ -1,6 +1,10 @@
-import { DeepPartial } from './types';
-import type { Config } from '../index';
+import { Config, getEnvironmentValue } from '@app/config';
+import { DeepPartial, Environment } from '@app/config/environments/types';
 
-const config: DeepPartial<Config> = {};
+export const config: DeepPartial<Config> = {
+  env: Environment.Test,
 
-export = config;
+  server: {
+    port: Number(getEnvironmentValue('PORT', '5555')),
+  },
+};

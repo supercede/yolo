@@ -1,6 +1,4 @@
-import { DeepPartial } from './types';
-import type { Config } from '../index';
+import type { Config } from '@app/config';
+import { DeepPartial } from '@app/config/environments/types';
 
-const config: DeepPartial<Config> = {};
-
-export = config;
+export const config: DeepPartial<Config> = {};

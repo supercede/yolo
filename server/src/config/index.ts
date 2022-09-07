@@ -2,7 +2,7 @@
 require('dotenv').config();
 import { config as dotenvConfig } from 'dotenv';
 import * as R from 'ramda';
-import { Environment } from './environments/types';
+import { Environment } from '@app/config/environments/types';
 
 dotenvConfig();
 
@@ -25,7 +25,7 @@ export interface Config {
   redis: {
     host: string;
     port: number;
-    password: string;
+    password?: string;
   };
 }
 
@@ -35,7 +35,7 @@ export const getEnvironmentValue = (
 ): string => {
   const envVal = process.env[key] ?? defaultValue;
 
-  if (!envVal) {
+  if (!envVal && envVal !== '') {
     throw new Error(`env variable ${key} has to be defined`);
   }
 
@@ -43,8 +43,8 @@ export const getEnvironmentValue = (
 };
 
 /* eslint-disable */
-const envConfig = require(`./environments/${env}`);
-const defaultConfig = require('./default');
+const envConfig = require(`./environments/${env}`)?.config;
+const defaultConfig = require('./default').config;
 /* eslint-enable */
 
 /* eslint-enable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
